@@ -1,6 +1,7 @@
 
 import 'package:dorosakin/feature/language_settings/view/arabic_language_card.dart';
-import 'package:dorosakin/feature/language_settings/view/confirm_button.dart';
+import 'package:dorosakin/feature/static_ui/learn_anytime.dart';
+import 'package:dorosakin/shared/widget/confirm_button.dart';
 import 'package:dorosakin/feature/language_settings/view/english_language_card.dart';
 import 'package:dorosakin/shared/app_theme/app_theme.dart';
 import 'package:flutter/material.dart';
@@ -41,7 +42,9 @@ class LanguageSetting extends StatelessWidget{
               },
             ),
             SizedBox(height: 181.h,) ,
-            ConfirmButton(onPressed: (){}, label: "Confirm",width:322.w , height: 48.h,),
+            ConfirmButton(onPressed: (){
+              Navigator.of(context).pushNamed(LearnAnytime.routeName);
+            }, label: "Confirm",width:322.w , height: 48.h,),
 
           ],),
         )

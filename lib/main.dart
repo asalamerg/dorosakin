@@ -1,3 +1,6 @@
+import 'package:dorosakin/feature/static_ui/Improve_your_skills.dart';
+import 'package:dorosakin/feature/static_ui/find_a_course.dart';
+import 'package:dorosakin/feature/static_ui/learn_anytime.dart';
 import 'package:dorosakin/shared/app_theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -19,6 +22,10 @@ class Dorosakin extends StatelessWidget{
       child: MaterialApp(
         routes: {
           LanguageSetting.routeName :(context)=>LanguageSetting(),
+          LearnAnytime.routeName :(context)=>LearnAnytime(),
+          FindACourse.routeName :(context)=>FindACourse(),
+          ImproveYourSkills.routeName :(context)=>ImproveYourSkills(),
+
         },
         initialRoute:LanguageSetting.routeName  ,
         theme: AppTheme.listTheme,
