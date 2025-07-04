@@ -3,8 +3,9 @@ import 'package:dorosakin/feature/dashboard/view/dashboard_page.dart';
 import 'package:dorosakin/feature/home/view/home.dart';
 import 'package:dorosakin/feature/listen/view/listen.dart';
 import 'package:dorosakin/feature/profile/view/profile_page.dart';
-import 'package:dorosakin/feature/save/view/Save.dart';
 import 'package:dorosakin/shared/app_theme/app_theme.dart';
+
+import '../wishlist/view/WishlistPage .dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = "HomeScreen";
@@ -22,7 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     _pages = [
-       Save(),
+      WishlistPage(),
       listen(),
        Home(),
        DashboardPage(),
