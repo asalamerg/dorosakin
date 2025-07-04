@@ -1,3 +1,5 @@
+import 'package:dorosakin/feature/auth/login/view/login_screen.dart';
+import 'package:dorosakin/feature/auth/register/view/register_screen.dart';
 import 'package:dorosakin/feature/static_ui/Improve_your_skills.dart';
 import 'package:dorosakin/feature/static_ui/find_a_course.dart';
 import 'package:dorosakin/feature/static_ui/learn_anytime.dart';
@@ -25,6 +27,9 @@ class Dorosakin extends StatelessWidget{
           LearnAnytime.routeName :(context)=>LearnAnytime(),
           FindACourse.routeName :(context)=>FindACourse(),
           ImproveYourSkills.routeName :(context)=>ImproveYourSkills(),
+          RegisterScreen.routeName :(context)=>RegisterScreen() ,
+          LoginScreen.routeName :(context)=>LoginScreen() ,
+
 
         },
         initialRoute:LanguageSetting.routeName  ,

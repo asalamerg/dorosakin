@@ -1,4 +1,5 @@
 
+import 'package:dorosakin/feature/auth/login/view/login_screen.dart';
 import 'package:dorosakin/shared/app_theme/app_theme.dart';
 import 'package:dorosakin/shared/widget/confirm_button.dart';
 import 'package:flutter/cupertino.dart';
@@ -21,8 +22,9 @@ class ImproveYourSkills extends StatelessWidget {
         Text(" day learning something new, from anywhere!" ,style: AppTheme.listTheme.textTheme.displaySmall,),
 
         SizedBox(height: 110.h,) ,
-        ConfirmButton(onPressed: (){
-         Navigator.pop(context);
+        ConfirmButton(onPressed: ()
+        {
+         Navigator.of(context).pushNamed(LoginScreen.routeName);
         }, label: "Let’s Start",width:322.w , height: 48.h,),
 
 
