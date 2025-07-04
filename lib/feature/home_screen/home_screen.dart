@@ -1,10 +1,10 @@
+import 'package:flutter/material.dart';
 import 'package:dorosakin/feature/dashboard/view/dashboard_page.dart';
 import 'package:dorosakin/feature/home/view/home.dart';
 import 'package:dorosakin/feature/listen/view/listen.dart';
 import 'package:dorosakin/feature/profile/view/profile_page.dart';
 import 'package:dorosakin/feature/save/view/Save.dart';
 import 'package:dorosakin/shared/app_theme/app_theme.dart';
-import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = "HomeScreen";
@@ -16,83 +16,138 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 2;
+  late final List<Widget> _pages;
 
-  final List<Widget> _pages = [
-    Save(),
-    listen(),
-    Home(),
-    DashboardPage(),
-    ProfilePage(),
-  ];
+  @override
+  void initState() {
+    super.initState();
+    _pages = [
+       Save(),
+      listen(),
+       Home(),
+       DashboardPage(),
+       ProfilePage(),
+    ];
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _pages[_currentIndex],
-      bottomNavigationBar: Container(
-        decoration: BoxDecoration(
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.3),
-              spreadRadius: 2,
-              blurRadius: 10,
-              offset: Offset(0, -3),
-            ),
-          ],
+      body: IndexedStack(
+        index: _currentIndex,
+        children: _pages,
+      ),
+      bottomNavigationBar: _buildBottomNavBar(),
+    );
+  }
+
+  Widget _buildBottomNavBar() {
+    return Container(
+      decoration: const BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black12,
+            spreadRadius: 0,
+            blurRadius: 10,
+            offset: Offset(0, -2),
+          ),
+        ],
+      ),
+      child: BottomNavigationBar(
+        currentIndex: _currentIndex,
+        type: BottomNavigationBarType.fixed,
+        backgroundColor: Colors.white,
+        selectedItemColor: AppTheme.buttonColor,
+        unselectedItemColor: Colors.grey.shade600,
+        selectedLabelStyle: const TextStyle(
+          fontSize: 12,
+          fontWeight: FontWeight.w600,
+          height: 1.8,
         ),
-        child: BottomNavigationBar(
-          currentIndex: _currentIndex,
-          type: BottomNavigationBarType.fixed,
-          selectedItemColor: AppTheme.buttonColor, // Make sure this color is defined properly
-          unselectedItemColor: Colors.grey,
-          selectedLabelStyle: TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
-          unselectedLabelStyle: TextStyle(fontSize: 12),
-          iconSize: 28,
-          elevation: 0,
-          onTap: (index) => setState(() => _currentIndex = index),
-          items: [
-            BottomNavigationBarItem(
-              icon: ColorFiltered(
-                colorFilter: ColorFilter.mode(
-                  _currentIndex == 0 ? AppTheme.buttonColor : Colors.grey,
-                  BlendMode.srcIn,
-                ),
-                child: Image.asset("assets/image/Vector.png", width: 24, height: 24),
-              ),
-              label: 'Save',
-            ),
-            BottomNavigationBarItem(
-              icon: ColorFiltered(
-                colorFilter: ColorFilter.mode(
-                  _currentIndex == 1 ? AppTheme.buttonColor : Colors.grey,
-                  BlendMode.srcIn,
-                ),
-                child: Image.asset("assets/image/listen.png", width: 24, height: 24),
-              ),
-              label: 'listen',
-            ),
-            BottomNavigationBarItem(
-              icon: ColorFiltered(
-                colorFilter: ColorFilter.mode(
-                  _currentIndex == 2 ? AppTheme.buttonColor : Colors.grey,
-                  BlendMode.srcIn,
-                ),
-                child: Image.asset("assets/image/home.png", width: 24, height: 24),
-              ),
-              label: 'home',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.dashboard,
-                  color: _currentIndex == 3 ? AppTheme.buttonColor : Colors.grey),
-              label: 'Dashboard',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person_outline,
-                  color: _currentIndex == 4 ? AppTheme.buttonColor : Colors.grey),
-              label: 'Profile',
-            ),
-          ],
+        unselectedLabelStyle: const TextStyle(
+          fontSize: 12,
+          height: 1.8,
         ),
+        iconSize: 26,
+        elevation: 0,
+        showSelectedLabels: true,
+        showUnselectedLabels: true,
+        onTap: (index) => setState(() => _currentIndex = index),
+        items: _buildNavBarItems(),
+      ),
+    );
+  }
+
+  List<BottomNavigationBarItem> _buildNavBarItems() {
+    return [
+      _buildNavBarItem(
+        iconPath: "assets/image/Vector.png",
+        label: "Save",
+        index: 0,
+      ),
+      _buildNavBarItem(
+        iconPath: "assets/image/listen.png",
+        label: "Listen",
+        index: 1,
+      ),
+      _buildNavBarItem(
+        iconPath: "assets/image/home.png",
+        label: "Home",
+        index: 2,
+      ),
+      BottomNavigationBarItem(
+        icon: _buildNavIcon(
+          icon: Icons.dashboard,
+          index: 3,
+        ),
+        label: "Dashboard",
+      ),
+      BottomNavigationBarItem(
+        icon: _buildNavIcon(
+          icon: Icons.person_outline,
+          index: 4,
+        ),
+        label: "Profile",
+      ),
+    ];
+  }
+
+  BottomNavigationBarItem _buildNavBarItem({
+    required String iconPath,
+    required String label,
+    required int index,
+  }) {
+    return BottomNavigationBarItem(
+      icon: _buildImageIcon(iconPath, index),
+      label: label,
+    );
+  }
+
+  Widget _buildImageIcon(String iconPath, int index) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 4),
+      child: ColorFiltered(
+        colorFilter: ColorFilter.mode(
+          _currentIndex == index ? AppTheme.buttonColor : Colors.grey.shade600,
+          BlendMode.srcIn,
+        ),
+        child: Image.asset(
+          iconPath,
+          width: 24,
+          height: 24,
+          fit: BoxFit.contain,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildNavIcon({required IconData icon, required int index}) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 4),
+      child: Icon(
+        icon,
+        size: 26,
+        color: _currentIndex == index ? AppTheme.buttonColor : Colors.grey.shade600,
       ),
     );
   }
