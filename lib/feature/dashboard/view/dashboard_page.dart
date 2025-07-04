@@ -59,13 +59,13 @@ class _DashboardPageState extends State<DashboardPage> {
             child: GridView.builder(
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2),
-              itemBuilder: (context, index) => ItemDashboard(itemModel: data[index],), itemCount: 8,),
+              itemBuilder: (context, index) => ItemDashboard(itemModel: _data[index],), itemCount: 8,),
           )
 
         ],),
     );
   }
-  List<ItemModel> data=[
+  List<ItemModel> _data=[
     ItemModel(color: Color(0XFFFFAC71), title: "Phrases   ", routeName: "routeName", number: "333"),
     ItemModel(color: Color(0XFF02AAB0), title: "Daily English", routeName: "routeName", number: "853"),
     ItemModel(color: Color(0XFFFAABAB), title: "Basic English", routeName: "routeName", number: "651"),

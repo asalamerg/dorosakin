@@ -11,8 +11,8 @@ class ItemDashboard extends  StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 161.26.w,
-      height: 203.89.h,
+      width: 161.26,
+      height: 203.89,
       padding: EdgeInsets.all(10),
       margin: EdgeInsets.all(10),
       decoration: BoxDecoration(

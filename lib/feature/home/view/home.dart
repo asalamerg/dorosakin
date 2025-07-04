@@ -1,8 +1,103 @@
+import 'package:dorosakin/feature/dashboard/model/item_model.dart';
+import 'package:dorosakin/feature/dashboard/view/item_dashboard.dart';
+import 'package:dorosakin/shared/app_theme/app_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Home extends StatelessWidget {
+   Home({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text('Subscription Page'));
+    return Padding(
+      padding: const EdgeInsets.all(20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(height: 30),
+          Row(
+            children: [
+              Text("Hi, Dorosak 👋",
+                style: AppTheme.listTheme.textTheme.displayMedium,),
+              Spacer(),
+              Image.asset(
+                "assets/image/profile.png", height: 50.h, width: 50.w,),
+            ],
+          ),
+
+          SizedBox(height: 25),
+
+          Text("Find your favorite startup",
+            style: AppTheme.listTheme.textTheme.displayMedium,),
+          Text("course here",
+            style: AppTheme.listTheme.textTheme.displayMedium,),
+
+          SizedBox(height: 14.h),
+
+          Container(
+            padding: EdgeInsets.symmetric(vertical: 20, horizontal: 3),
+            decoration: BoxDecoration(
+                color: Color(0XFFFFFFFF),
+                borderRadius: BorderRadius.circular(12)
+            ),
+            child: Row(children: [
+              Icon(Icons.search, size: 24.sp, color: Color(0XFFDFDFDF),),
+              SizedBox(width: 30,),
+              Expanded(child: TextField(
+                decoration: InputDecoration(
+                  hintText: "Search for anything",
+                  hintStyle: TextStyle(
+                      color: Color(0XFFDFDFDF), fontSize: 16.sp),
+                ),
+              )),
+
+            ],),),
+          SizedBox(height: 14.h),
+          Row(children: [
+            Text("Categories",style: TextStyle(fontSize: 16 , color: Color(0XFF444444))) ,
+            Spacer(),
+            Text("View All" ,style: TextStyle(fontSize: 16 , color: AppTheme.buttonColor),) ,
+          ],),
+          SizedBox(height: 14.h),
+          Expanded(
+            child: SizedBox(
+              height: 180.h,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context,index)=>ItemDashboard(itemModel: _data[index]) , itemCount: 8,),
+            ),
+          ),
+
+          Row(children: [
+            Text("Learners are viewing",style: TextStyle(fontSize: 16 , color: Color(0XFF444444))) ,
+            Spacer(),
+            Text("View All" ,style: TextStyle(fontSize: 16 , color: AppTheme.buttonColor),) ,
+
+          ],),
+
+          Row(children: [
+            Text("Audio books",style: TextStyle(fontSize: 16 , color: Color(0XFF444444))) ,
+            Spacer(),
+            Text("View All" ,style: TextStyle(fontSize: 16 , color: AppTheme.buttonColor),) ,
+
+          ],),
+
+        ],
+      ),
+    );
   }
+  final List<ItemModel> _data=[
+    ItemModel(color: Color(0XFFFFAC71), title: "Phrases   ", routeName: "routeName", number: "333"),
+    ItemModel(color: Color(0XFF02AAB0), title: "Daily English", routeName: "routeName", number: "853"),
+    ItemModel(color: Color(0XFFFAABAB), title: "Basic English", routeName: "routeName", number: "651"),
+    ItemModel(color: Color(0XFF7CA4E9), title: "Punctuation", routeName: "routeName", number: "985"),
+    ItemModel(color: Color(0XFF76809C), title: "Phrasal Verbs", routeName: "routeName", number: "123"),
+    ItemModel(color: Color(0XFFFF6272), title: "English Idioms", routeName: "routeName", number: "351"),
+    ItemModel(color: Color(0XFFA0D2F1), title: "Quotes", routeName: "routeName", number: "762"),
+    ItemModel(color: Color(0XFFFFD157), title: "Common Words", routeName: "routeName", number: "861"),
+
+
+
+
+  ];
 }
