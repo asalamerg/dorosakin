@@ -7,6 +7,7 @@ import 'package:dorosakin/shared/app_theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'feature/home_screen/home_screen.dart';
 import 'feature/language_settings/view/language_setting.dart';
 
 void main() {
@@ -29,6 +30,7 @@ class Dorosakin extends StatelessWidget{
           ImproveYourSkills.routeName :(context)=>ImproveYourSkills(),
           RegisterScreen.routeName :(context)=>RegisterScreen() ,
           LoginScreen.routeName :(context)=>LoginScreen() ,
+          HomeScreen.routeName :(context)=>HomeScreen(),
 
 
         },

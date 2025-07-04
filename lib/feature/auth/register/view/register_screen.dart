@@ -1,4 +1,5 @@
 
+import 'package:dorosakin/feature/home_screen/home_screen.dart';
 import 'package:dorosakin/shared/app_theme/app_theme.dart';
 import 'package:dorosakin/shared/widget/default_button.dart';
 import 'package:dorosakin/shared/widget/text_form_field.dart';
@@ -62,9 +63,8 @@ class _LoginScreenState extends State<RegisterScreen> {
     );
   }
   void register(){
-    if(formKey.currentState!.validate()){
-
-    }
+  //  if(formKey.currentState!.validate()){}
+    Navigator.of(context).pushNamed(HomeScreen.routeName);
   }
 
 
