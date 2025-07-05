@@ -1,8 +1,8 @@
 
 import 'package:dio/dio.dart';
 import 'package:dorosakin/feature/auth/data/model/ResponseLogin.dart';
+import 'package:dorosakin/feature/auth/data/model/ResponseLogout.dart';
 import 'package:dorosakin/feature/auth/data/model/ResponseRegister.dart';
-import '../data_sources/data_sourcea_api.dart';
 import '../data_sources/data_sources_api_impl.dart';
 import 'auth_repository.dart';
 
@@ -27,4 +27,15 @@ class AuthRepositoryImpl extends AuthRepository {
       rethrow;
     }
   }
+
+  @override
+  Future<ResponseLogout> logout(String token) async {
+    try {
+      return await dataSource.logout(token);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+
 }

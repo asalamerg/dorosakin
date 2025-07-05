@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:dorosakin/feature/auth/data/model/ResponseLogin.dart';
+import 'package:dorosakin/feature/auth/data/model/ResponseLogout.dart';
 import 'package:dorosakin/feature/auth/data/model/ResponseRegister.dart';
 import 'package:dorosakin/shared/error/dio_exception_handler.dart';
 
@@ -51,4 +52,20 @@ class DataSourcesApiImpl extends DataSourceApi {
       throw Exception('حدث خطأ غير متوقع أثناء التسجيل');
     }
   }
-}
+
+  @override
+  Future<ResponseLogout> logout(String token) async {
+    final response = await _dio.post(
+      '${ConstantApi.baseUrl}${ConstantApi.endpointsLogout}',
+      options: Options(
+        headers: {
+          'Authorization': 'Bearer $token',
+          'Content-Type': 'application/json',
+        },
+      ),
+    );
+    return ResponseLogout.fromJson(response.data);
+  }
+  }
+
+

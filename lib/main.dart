@@ -6,13 +6,14 @@ import 'package:dorosakin/feature/static_ui/Improve_your_skills.dart';
 import 'package:dorosakin/feature/static_ui/find_a_course.dart';
 import 'package:dorosakin/feature/static_ui/learn_anytime.dart';
 import 'package:dorosakin/shared/app_theme/app_theme.dart';
+import 'package:dorosakin/shared/widget/my_bloc_observer.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'feature/auth/view_model/auth_cubit.dart';
 
 void main() {
+  Bloc.observer = MyBlocObserver();
   runApp(const Dorosakin());
 }
 
@@ -27,7 +28,8 @@ class Dorosakin extends StatelessWidget {
         return MultiBlocProvider(
           providers: [
             BlocProvider<AuthCubit>(
-              create: (context) => AuthCubit(),            ),
+              create: (context) => AuthCubit(),
+            ),
           ],
           child: MaterialApp(
             routes: {
