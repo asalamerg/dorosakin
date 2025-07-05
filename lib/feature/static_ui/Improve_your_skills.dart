@@ -1,5 +1,5 @@
 
-import 'package:dorosakin/feature/auth/login/view/login_screen.dart';
+import 'package:dorosakin/feature/auth/view/login/view/login_screen.dart';
 import 'package:dorosakin/shared/app_theme/app_theme.dart';
 import 'package:dorosakin/shared/widget/confirm_button.dart';
 import 'package:flutter/cupertino.dart';
